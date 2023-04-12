@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="btn">Click</button>
+</body>
+<script>
+    const btn = document.getElementById("btn");
+
+    btn.addEventListener("click", () => {
+        Notification.requestPermission()
+            .then(p => {
+                if (p === "granted") {
+                    const notification = new Notification("TaxSuvidha", {
+                        body: `New Client found ${Math.random()}`,
+                        data: {
+                            msg: 555
+                        },
+                        icon: "icon.png",
+                        tag: "unique"
+                    })
+                    notification.onclick = (event) => {
+                        event.preventDefault();
+                        window.open("http://www.mozilla.org", "_blank");
+                    };
+                }
+            })
+    })
+</script>
+
+</html>
